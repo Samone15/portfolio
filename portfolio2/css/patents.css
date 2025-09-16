@@ -2,10 +2,12 @@
     background: #ffffff; /* white */
     border-radius: 25px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* light shadow */
+    box-shadow: 0 10px 30px #6A5ACD;
+    transition: transform 0.3s ease;
     border: 1px solid #cccccc; /* medium gray */
     transition: all 0.3s ease;
     transform: translateY(30px);
+    margin-top: 3rem;
 }
 
 .patent-card:hover {
@@ -125,7 +127,7 @@
 
 .patent-tag:hover {
     background: #6A5ACD; /* yellow */
-    color: #222222; /* dark text */
+    color: black; /* dark text */
 }
 
 .patent-actions {
@@ -150,7 +152,7 @@
 
 .patent-link.primary {
     background: #6A5ACD;
-    color: #222222;
+    color: white;
     border: 2px solid #6A5ACD;
 }
 

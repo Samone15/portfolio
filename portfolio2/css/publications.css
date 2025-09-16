@@ -41,6 +41,11 @@
     margin-bottom: 1rem;
 }
 
+.publication-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
 .publication-link {
     color: #6A5ACD;
     text-decoration: none;
