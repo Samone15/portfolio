@@ -1,0 +1,39 @@
+/* Header Navigation */
+header {
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    padding: 5rem 0;   /* increased from 1rem */
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;          /* a little more breathing space */
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;     /* slightly bolder for visibility */
+    font-size: 1.1rem;    /* text looks larger */
+    padding: 0.8rem 0.8rem; /* bigger clickable area */
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+nav a.active,
+nav a:hover {
+    /* background: #FFF44F; */
+    /* color: #FFD700; */
+    color: #6A5ACD;
+}

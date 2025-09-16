@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pradyumna S Athreya - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-yellow: #FFD700;
+            --accent-yellow: #FFF700;
+            --text-dark: #2D2D2D;
+            --text-gray: #6B7280;
+            --text-light: #9CA3AF;
+            --bg-white: #FFFFFF;
+            --bg-light: #FAFAFA;
+            --black: #000000;
+            --border-color: #E5E7EB;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            scroll-behavior: smooth;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a.active {
+            color: var(--text-dark);
+        }
+
+        .nav-links a.active::after,
+        .nav-links a:hover::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary-yellow);
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+            background: var(--bg-white);
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            padding-left: 2rem;
+        }
+
+        .hero-greeting {
+            font-size: 3.5rem;
+            font-weight: 300;
+            color: var(--primary-yellow);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-name {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--black);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+            max-width: 500px;
+        }
+
+        .hero-image-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-frames {
+            position: relative;
+            width: 400px;
+            height: 500px;
+        }
+
+        .frame-yellow {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 350px;
+            height: 450px;
+            border: 3px solid var(--primary-yellow);
+            border-radius: 8px;
+            z-index: 1;
+        }
+
+        .frame-black {
+            position: absolute;
+            top: 30px;
+            left: 0;
+            width: 350px;
+            height: 450px;
+            border: 3px solid var(--black);
+            border-radius: 8px;
+            z-index: 2;
+        }
+
+        .profile-image {
+            position: absolute;
+            top: 50px;
+            left: 20px;
+            width: 330px;
+            height: 430px;
+            object-fit: cover;
+            border-radius: 8px;
+            z-index: 3;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--bg-white);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: var(--bg-light);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .project-header {
+            height: 180px;
+            background: linear-gradient(135deg, var(--primary-yellow), #FFE55C);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--black);
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 0.8rem;
+        }
+
+        .project-description {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .project-link {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .project-link:hover {
+            border-bottom-color: var(--primary-yellow);
+        }
+
+        /* Experience Section */
+        .experience {
+            background: var(--bg-white);
+        }
+
+        .experience-timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-yellow);
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 3rem;
+            background: var(--bg-light);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-yellow);
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -3.2rem;
+            top: 2.5rem;
+            width: 16px;
+            height: 16px;
+            background: var(--primary-yellow);
+            border-radius: 50%;
+            border: 4px solid var(--bg-white);
+        }
+
+        .experience-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-company {
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-date {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-description {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* Publications Section */
+        .publications {
+            background: var(--bg-light);
+        }
+
+        .publications-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .publication-item {
+            background: var(--bg-white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-yellow);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .publication-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .publication-authors {
+            color: var(--text-gray);
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .publication-venue {
+            color: var(--text-dark);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .publication-link {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary-yellow);
+            transition: all 0.3s ease;
+        }
+
+        .publication-link:hover {
+            background: var(--primary-yellow);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        /* Achievements Section */
+        .achievements {
+            background: var(--bg-white);
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .achievement-card {
+            background: var(--bg-light);
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-yellow);
+        }
+
+        .achievement-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary-yellow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .achievement-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-description {
+            color: var(--text-gray);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            color: var(--primary-yellow);
+        }
+
+        .footer-text {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-greeting {
+                font-size: 2.5rem;
+            }
+
+            .hero-name {
+                font-size: 2.8rem;
+            }
+
+            .hero-description {
+                font-size: 1.1rem;
+            }
+
+            .image-frames {
+                width: 300px;
+                height: 400px;
+            }
+
+            .frame-yellow,
+            .frame-black {
+                width: 280px;
+                height: 360px;
+            }
+
+            .profile-image {
+                width: 260px;
+                height: 340px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 4rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .social-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-image-container">
+                <div class="image-frames">
+                    <div class="frame-yellow"></div>
+                    <div class="frame-black"></div>
+                    <img src="Pradykun.jpg" alt="Pradyumna S Athreya" class="profile-image">
+                </div>
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-greeting">Hi, I'm</h1>
+                <h2 class="hero-name">Pradyumna S Athreya</h2>
+                <p class="hero-description">An engineering graduate from RVCE, currently working as Yield and Integration Engineer at Global Foundaries.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=400&fit=crop&crop=face" alt="About Pradyumna" class="about-image">
+            <div class="about-text">
+                <p>I'm a passionate researcher and developer with expertise in cutting-edge technologies and academic research. My work focuses on creating innovative solutions that bridge the gap between theoretical knowledge and practical applications.</p>
+                <p>With a strong background in both industry and academia, I bring a unique perspective to every project I undertake. I'm committed to pushing the boundaries of what's possible and contributing meaningful insights to my field.</p>
+                <p>When I'm not immersed in research or development, I enjoy mentoring others, contributing to open-source projects, and staying at the forefront of emerging technologies.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="experience-timeline">
+            <div class="experience-item">
+                <h3 class="experience-title">Senior Research Scientist</h3>
+                <div class="experience-company">Tech Research Institute</div>
+                <div class="experience-date">January 2022 - Present</div>
+                <p class="experience-description">Leading cutting-edge research in artificial intelligence and machine learning. Spearheading projects that have resulted in breakthrough discoveries and publications in top-tier journals. Managing a team of researchers and collaborating with international institutions.</p>
+            </div>
+
+            <div class="experience-item">
+                <h3 class="experience-title">Principal Software Engineer</h3>
+                <div class="experience-company">Innovation Labs Inc.</div>
+                <div class="experience-date">June 2020 - December 2021</div>
+                <p class="experience-description">Architected and developed scalable software solutions serving millions of users. Led the technical vision for multiple product lines and mentored junior engineers. Implemented best practices that improved system reliability by 40%.</p>
+            </div>
+
+            <div class="experience-item">
+                <h3 class="experience-title">Research Fellow</h3>
+                <div class="experience-company">University Research Center</div>
+                <div class="experience-date">August 2018 - May 2020</div>
+                <p class="experience-description">Conducted fundamental research in computational methods and published findings in peer-reviewed journals. Collaborated with interdisciplinary teams and secured funding for research initiatives.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="publications">
+        <h2 class="section-title">Publications</h2>
+        <div class="publications-list">
+            <div class="publication-item">
+                <h3 class="publication-title">Novel Approaches to Machine Learning Optimization in Large-Scale Systems</h3>
+                <p class="publication-authors">Pradyumna S Athreya, Dr. Jane Smith, Prof. Robert Johnson</p>
+                <p class="publication-venue">Nature Machine Intelligence, 2024</p>
+                <a href="#" class="publication-link">View Publication</a>
+            </div>
+
+            <div class="publication-item">
+                <h3 class="publication-title">Scalable Architectures for Real-Time Data Processing</h3>
+                <p class="publication-authors">Pradyumna S Athreya, Dr. Emily Chen, Dr. Michael Wilson</p>
+                <p class="publication-venue">IEEE Transactions on Parallel and Distributed Systems, 2023</p>
+                <a href="#" class="publication-link">View Publication</a>
+            </div>
+
+            <div class="publication-item">
+                <h3 class="publication-title">Advances in Computational Methods for Complex Problem Solving</h3>
+                <p class="publication-authors">Pradyumna S Athreya, Prof. Sarah Davis</p>
+                <p class="publication-venue">ACM Computing Surveys, 2023</p>
+                <a href="#" class="publication-link">View Publication</a>
+            </div>
+
+            <div class="publication-item">
+                <h3 class="publication-title">Deep Learning Applications in Autonomous Systems</h3>
+                <p class="publication-authors">Pradyumna S Athreya, Dr. Alex Thompson, Dr. Lisa Anderson</p>
+                <p class="publication-venue">International Conference on Robotics and Automation, 2022</p>
+                <a href="#" class="publication-link">View Publication</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">AI Research Platform</div>
+                <h3 class="project-title">Intelligent Research Assistant</h3>
+                <p class="project-description">A comprehensive platform that uses advanced AI to assist researchers in literature review, data analysis, and hypothesis generation. Features include automated paper summarization and research trend analysis.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">TensorFlow</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">Docker</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">Live Demo</a>
+                    <a href="#" class="project-link">GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">Data Analytics Suite</div>
+                <h3 class="project-title">Real-Time Analytics Dashboard</h3>
+                <p class="project-description">A high-performance analytics platform that processes terabytes of data in real-time, providing actionable insights through interactive visualizations and automated reporting systems.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">Apache Kafka</span>
+                    <span class="tech-tag">Elasticsearch</span>
+                    <span class="tech-tag">D3.js</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Redis</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">Live Demo</a>
+                    <a href="#" class="project-link">GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">Mobile Research Tool</div>
+                <h3 class="project-title">Field Research Mobile App</h3>
+                <p class="project-description">A cross-platform mobile application designed for field researchers to collect, analyze, and share data in real-time, even in offline environments with automatic synchronization capabilities.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">React Native</span>
+                    <span class="tech-tag">Firebase</span>
+                    <span class="tech-tag">GraphQL</span>
+                    <span class="tech-tag">SQLite</span>
+                    <span class="tech-tag">AWS</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">App Store</a>
+                    <a href="#" class="project-link">GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">Open Source Library</div>
+                <h3 class="project-title">ML Optimization Toolkit</h3>
+                <p class="project-description">An open-source Python library that provides advanced optimization algorithms for machine learning models, featuring GPU acceleration and distributed computing support.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">CUDA</span>
+                    <span class="tech-tag">NumPy</span>
+                    <span class="tech-tag">PyTorch</span>
+                    <span class="tech-tag">MPI</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">Documentation</a>
+                    <a href="#" class="project-link">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="achievements">
+        <h2 class="section-title">Achievements</h2>
+        <div class="achievements-grid">
+            <div class="achievement-card">
+                <div class="achievement-icon">🏆</div>
+                <h3 class="achievement-title">Outstanding Research Award</h3>
+                <p class="achievement-description">IEEE International Conference on Machine Learning 2024</p>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">🎓</div>
+                <h3 class="achievement-title">Ph.D. in Computer Science</h3>
+                <p class="achievement-description">Stanford University, Summa Cum Laude</p>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">🚀</div>
+                <h3 class="achievement-title">Innovation Excellence Award</h3>
+                <p class="achievement-description">National Technology Innovation Competition 2023</p>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">📚</div>
+                <h3 class="achievement-title">Top 1% Researcher</h3>
+                <p class="achievement-description">Google Scholar Citations Ranking</p>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">💻</div>
+                <h3 class="achievement-title">Open Source Champion</h3>
+                <p class="achievement-description">GitHub Top Contributor in AI/ML Domain</p>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">🌟</div>
+                <h3 class="achievement-title">Keynote Speaker</h3>
+                <p class="achievement-description">International Technology Conferences</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="mailto:pradyumna@example.com" class="social-link">📧</a>
+                <a href="https://linkedin.com/in/pradyumna-athreya" class="social-link">💼</a>
+                <a href="https://github.com/pradyumna-athreya" class="social-link">🐙</a>
+                <a href="https://twitter.com/pradyumna_a" class="social-link">🐦</a>
+                <a href="https://scholar.google.com/citations" class="social-link">🎓</a>
+            </div>
+            <p class="footer-text">&copy; 2024 Pradyumna S Athreya. All rights reserved.</p>
+            <p class="footer-text">Built with passion for research and innovation</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling and active nav management
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active navigation management
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const sections = document.querySelectorAll('section');
+
+        function setActiveNav() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', setActiveNav);
+        window.addEventListener('load', setActiveNav); // Initialize on page load
+
+        // Header background change on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold:
+            
